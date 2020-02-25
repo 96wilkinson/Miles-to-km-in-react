@@ -12,20 +12,34 @@ export default class Converter extends React.Component {
     };
   }
   handleChange = (event) => { //change event by destructuring it 
-    console.log(this.state);
-  };
+    if(event.target.name === 'username'){
+        this.setState({
+            username: event.target.value
+        });
+    }
+    else if(event.target.name === 'email'){
+        this.setState({
+            email: event.target.value
+        });
+    }
+    else if(event.target.name === 'password'){
+        this.setState({
+            password: event.target.value
+        });
+    }
+}
 
   render() {
     // these are called controlled components.
     return (
       <div>
-        <FormInput value={this.state.username} name="username"  />
+        <FormInput value={this.state.username} name="username" handleChange={this.handleChange} />
 
-        <FormInput value={this.state.email} name="km"  />
+        <FormInput value={this.state.email} name="email" handleChange={this.handleChange} />
 
-        <FormInput value={this.state.password} name="password"  />
+        <FormInput value={this.state.password} name="password" handleChange={this.handleChange} />
 
-        <FormInput type="submit" name="submit" handleChange={this.handleChange} />
+        <FormInput type="submit" name="submit" onsubmit={console.log(this.state)} />
       </div>
     );
   }
